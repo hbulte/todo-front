@@ -1,0 +1,26 @@
+.sign,
+.log {
+  display: flex;
+  flex-direction: column;
+}
+
+.sign > form,
+.log > form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 240px;
+}
+.logger {
+  margin-top: 100px;
+}
+.sign > form > button,
+.log > form > button {
+  margin-top: 10px;
+}
+
+@media (max-width: 1240px) {
+  .logger {
+    margin-top: 50px;
+  }
+}

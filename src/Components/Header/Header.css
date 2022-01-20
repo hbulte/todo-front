@@ -1,0 +1,27 @@
+.header {
+  background-color: #5c49d3;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: 90px;
+  align-items: center;
+}
+
+.connection-buttons {
+  background-color: #e8e8e8;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 0px 15px;
+  border-radius: 10px;
+  margin-right: 150px;
+}
+
+.site-name {
+  margin-left: 150px;
+  color: #fff;
+}

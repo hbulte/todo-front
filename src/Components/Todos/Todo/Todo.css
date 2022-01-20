@@ -1,0 +1,13 @@
+.todo {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 15px 15px 15px;
+  border: solid 2px #aaa;
+  border-radius: 20px;
+  height: 600px;
+  flex-shrink: unset;
+}
+
+.title-input {
+  margin: 19px 0px;
+}

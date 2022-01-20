@@ -3,9 +3,10 @@ import Header from "./Components/Header/Header";
 
 import { useState } from "react";
 import WelcomePage from "./Components/WelcomePage/WelcomePage";
+import Todos from "./Components/Todos/Todos";
 
 function App() {
-  const [userStatus, setUserStatus] = useState("not connected");
+  const [userStatus, setUserStatus] = useState("connected");
   const [logOrSign, setLogOrSign] = useState("log");
   return (
     <div className="app">
@@ -17,6 +18,7 @@ function App() {
           logOrSign={logOrSign}
           setLogOrSign={setLogOrSign}
         />
+        <Todos userStatus={userStatus} />
       </div>
     </div>
   );

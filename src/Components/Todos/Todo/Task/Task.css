@@ -1,0 +1,29 @@
+.task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: solid 2px #666;
+  border-radius: 15px;
+  padding: 0px 5px;
+  height: 40px;
+  width: 280px;
+  margin-bottom: 10px;
+  flex-shrink: unset;
+}
+
+.task-name {
+  margin-right: 15px;
+}
+.delete-task-button {
+  transform: rotate(45deg);
+  background-color: white;
+  color: #000;
+  font-size: 24px;
+  box-shadow: none;
+  padding: 0px;
+  border-radius: 50%;
+  width: 30px;
+  text-align: center;
+  line-height: 12px;
+  height: 30px;
+}

@@ -1,0 +1,20 @@
+.todos {
+  display: flex;
+  flex-direction: column;
+}
+
+.head-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0% 5%;
+  margin-bottom: 50px;
+}
+
+.todos-section {
+  display: flex;
+  gap: 20px;
+  overflow-x: scroll;
+  width: 100%;
+}

@@ -11,8 +11,6 @@ const Task = ({
   todos,
   setTodos,
 }) => {
-  console.log(name);
-  console.log(todos[todoIndex][taskIndex]);
   //////////////////////////////////////////////////////////////////////////
   // fonction qui permet d'éditer le texte d'une tâche en déclenchant l'input
   //////////////////////////////////////////////////////////////////////////
@@ -84,7 +82,16 @@ const Task = ({
           }}
         />
       </div>
-      <button className="delete-task-button">+</button>
+      <button
+        className="delete-task-button"
+        onClick={() => {
+          const newTodo = [...todos];
+          newTodo[todoIndex].tasks.splice(taskIndex, 1);
+          setTodos(newTodo);
+        }}
+      >
+        +
+      </button>
     </div>
   );
 };

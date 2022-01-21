@@ -11,6 +11,8 @@ const Todo = ({
   modify,
   setModify,
   initialModifyState,
+  deleteList,
+  setDeleteList,
 }) => {
   //////////////////////////////////////////////////////////////////////////
   // fonction qui permet d'éditer le titre d'une Todo en déclenchant l'input
@@ -44,49 +46,61 @@ const Todo = ({
 
   return (
     <div className="todo">
-      {/*
+      <div className="todo-head">
+        {/*
        //////////////////////////////////////////////////////////////////////
        Div où le titre où l'input est affiché selon l'état du state d'édition
        //////////////////////////////////////////////////////////////////////
        */}
-      <div onDoubleClick={handleRename}>
-        <h3
-          name="title-div"
-          style={{
-            display:
-              modify.modifyTitle && modify.modifyTodoIndex === todoIndex
-                ? "none"
-                : "",
+        <div onDoubleClick={handleRename}>
+          <h3
+            name="title-div"
+            style={{
+              display:
+                modify.modifyTitle && modify.modifyTodoIndex === todoIndex
+                  ? "none"
+                  : "",
+            }}
+          >
+            {title}
+          </h3>
+          <input
+            type="text"
+            className="title-input"
+            placeholder="Titre"
+            name="title"
+            style={{
+              display:
+                modify.modifyTitle && modify.modifyTodoIndex === todoIndex
+                  ? ""
+                  : "none",
+            }}
+            onChange={(e) => {
+              const newTitle = [...todos];
+              newTitle[todoIndex].title = e.target.value;
+              setTodos(newTitle);
+            }}
+            onKeyPress={handleKey}
+          />
+        </div>
+        <button
+          style={{ display: deleteList ? "" : "none" }}
+          onClick={() => {
+            const deleteTodo = [...todos];
+            deleteTodo.splice(todoIndex, 1);
+            setTodos(deleteTodo);
+            setDeleteList(false);
           }}
         >
-          {title}
-        </h3>
-        <input
-          type="text"
-          className="title-input"
-          placeholder="Titre"
-          name="title"
-          style={{
-            display:
-              modify.modifyTitle && modify.modifyTodoIndex === todoIndex
-                ? ""
-                : "none",
-          }}
-          onChange={(e) => {
-            const newTitle = [...todos];
-            newTitle[todoIndex].title = e.target.value;
-            setTodos(newTitle);
-          }}
-          onKeyPress={handleKey}
-        />
-
-        {/*
+          {" "}
+          -{" "}
+        </button>
+      </div>
+      {/*
        //////////////////////////////////////////////
        Div où sont lister les tâches de chaque Todo
        //////////////////////////////////////////////
        */}
-      </div>
-
       {tasks.map((name, taskIndex) => {
         return (
           <Task

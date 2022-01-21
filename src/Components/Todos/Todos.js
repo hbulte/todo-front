@@ -4,8 +4,10 @@ import "./Todos.css";
 
 const Todos = ({ userStatus }) => {
   //State qui stocke l'état des Todos dans un arrays
-  const [todos, setTodos] = useState([{ title: "Titre", tasks: ["tache"] }]);
+  const [todos, setTodos] = useState([{ title: "Titre", tasks: ["Tâche"] }]);
 
+  //State pour delete une liste
+  const [deleteList, setDeleteList] = useState(false);
   // State utilisé pour modifier des listes et totos 1 par 1
   const initialModifyState = {
     isModification: false,
@@ -33,6 +35,14 @@ const Todos = ({ userStatus }) => {
         >
           + Ajouter une liste
         </button>
+        <button
+          onClick={(e) => {
+            setDeleteList(true);
+          }}
+          style={{ display: todos.length >= 1 ? "" : "none" }}
+        >
+          - Supprimer une liste
+        </button>
       </section>
 
       {/*
@@ -53,6 +63,8 @@ const Todos = ({ userStatus }) => {
               modify={modify}
               setModify={setModify}
               initialModifyState={initialModifyState}
+              deleteList={deleteList}
+              setDeleteList={setDeleteList}
             />
           );
         })}

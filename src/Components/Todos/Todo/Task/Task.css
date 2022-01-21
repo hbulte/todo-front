@@ -5,7 +5,7 @@
   border: solid 2px #666;
   border-radius: 15px;
   padding: 0px 5px;
-  height: 40px;
+  min-height: 40px;
   width: 280px;
   margin-bottom: 10px;
   flex-shrink: unset;
@@ -13,6 +13,10 @@
 
 .task-name {
   margin-right: 15px;
+  margin-top: 0px;
+  padding: 2px 0px;
+  margin-bottom: 0px;
+  width: 230px;
 }
 .delete-task-button {
   transform: rotate(45deg);
@@ -28,6 +32,8 @@
   height: 30px;
 }
 
-.task-input{
-  
+.task-input {
+  width: 240px;
+}
+.task-input:active {
 }

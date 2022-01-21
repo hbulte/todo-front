@@ -5,9 +5,21 @@
   border: solid 2px #aaa;
   border-radius: 20px;
   height: 600px;
+  width: 290px;
   flex-shrink: unset;
 }
 
 .title-input {
   margin: 19px 0px;
+  width: 95%;
+  border: none;
+}
+.title-input:active {
+  border: none;
+}
+
+.todo-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

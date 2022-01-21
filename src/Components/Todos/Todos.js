@@ -3,7 +3,19 @@ import Todo from "./Todo/Todo";
 import "./Todos.css";
 
 const Todos = ({ userStatus }) => {
-  const [todos, setTodos] = useState([{ title: "Titre", tasks: ["Tâche 1"] }]);
+  //State qui stocke l'état des Todos dans un arrays
+  const [todos, setTodos] = useState([{ title: "Titre", tasks: ["tache"] }]);
+
+  // State utilisé pour modifier des listes et totos 1 par 1
+  const initialModifyState = {
+    isModification: false,
+    modifyTitle: false,
+    modifyTask: false,
+    modifyTodoIndex: null,
+    modifyTaskIndex: null,
+  };
+
+  const [modify, setModify] = useState(initialModifyState);
 
   return (
     <div
@@ -15,23 +27,32 @@ const Todos = ({ userStatus }) => {
         <button
           onClick={(e) => {
             const newTodo = [...todos];
-            newTodo.push({ title: "Titre", tasks: ["Tâche 1"] });
+            newTodo.push({ title: "Titre", tasks: ["Tâche"] });
             setTodos(newTodo);
           }}
         >
           + Ajouter une liste
         </button>
       </section>
+
+      {/*
+       ///////////////////////////////////
+       Section où sont afficher les Todos
+       //////////////////////////////////
+       */}
       <section className="todos-section">
-        {todos.map(({ title, tasks }, index) => {
+        {todos.map(({ title, tasks }, todoIndex) => {
           return (
             <Todo
-              key={index}
-              index={index}
+              key={todoIndex}
+              todoIndex={todoIndex}
               title={title}
               setTodos={setTodos}
               todos={todos}
               tasks={tasks}
+              modify={modify}
+              setModify={setModify}
+              initialModifyState={initialModifyState}
             />
           );
         })}

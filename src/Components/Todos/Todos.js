@@ -26,23 +26,32 @@ const Todos = ({ userStatus }) => {
     >
       <section className="head-section">
         <h2>Bienvenue, voici vos Listes</h2>
-        <button
-          onClick={(e) => {
-            const newTodo = [...todos];
-            newTodo.push({ title: "Titre", tasks: ["Tâche"] });
-            setTodos(newTodo);
-          }}
-        >
-          + Ajouter une liste
-        </button>
-        <button
-          onClick={(e) => {
-            setDeleteList(true);
-          }}
-          style={{ display: todos.length >= 1 ? "" : "none" }}
-        >
-          - Supprimer une liste
-        </button>
+        <div>
+          {" "}
+          <button
+            className="head-buttons green"
+            onClick={(e) => {
+              const newTodo = [...todos];
+              newTodo.push({ title: "Titre", tasks: ["Tâche"] });
+              setTodos(newTodo);
+            }}
+          >
+            + Ajouter une liste
+          </button>
+          <button
+            className="head-buttons red"
+            onClick={(e) => {
+              if (!deleteList) {
+                setDeleteList(true);
+              } else {
+                setDeleteList(false);
+              }
+            }}
+            style={{ display: todos.length >= 1 ? "" : "none" }}
+          >
+            - Supprimer une liste
+          </button>
+        </div>
       </section>
 
       {/*

@@ -85,6 +85,7 @@ const Todo = ({
         </div>
         <button
           style={{ display: deleteList ? "" : "none" }}
+          className="red"
           onClick={() => {
             const deleteTodo = [...todos];
             deleteTodo.splice(todoIndex, 1);

@@ -18,3 +18,14 @@
   overflow-x: scroll;
   width: 100%;
 }
+
+.head-buttons {
+  margin-right: 30px;
+}
+.green {
+  background-color: rgb(13, 163, 13);
+}
+
+.red {
+  background-color: rgb(226, 42, 42);
+}

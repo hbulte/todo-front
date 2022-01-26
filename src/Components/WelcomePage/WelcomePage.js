@@ -3,17 +3,9 @@ import Logger from "./Logger/Logger";
 import "./WelcomePage.css";
 import Button from "../Global/Button/Button";
 import taskJpg from "../../Asset/tasks.png";
-const WelcomePage = ({
-  userStatus,
-  logOrSign,
-  setLogOrSign,
-  setUserStatus,
-}) => {
+const WelcomePage = ({ logOrSign, setLogOrSign, setUserStatus, setToken }) => {
   return (
-    <div
-      className="welcome-page"
-      style={{ display: userStatus === "not connected" ? "" : "none" }}
-    >
+    <div className="welcome-page">
       <img src={taskJpg} alt="Bloc-note" className="taskJpg" />
       <div className="welcome-message">
         <h2 className="welcome-text">
@@ -32,7 +24,11 @@ const WelcomePage = ({
           />
         </div>
       </div>
-      <Logger setUserStatus={setUserStatus} logOrSign={logOrSign} />
+      <Logger
+        setUserStatus={setUserStatus}
+        logOrSign={logOrSign}
+        setToken={setToken}
+      />
     </div>
   );
 };

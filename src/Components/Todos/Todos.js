@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Todo from "./Todo/Todo";
 import "./Todos.css";
+import axios from "axios";
 
 const Todos = ({ userStatus }) => {
   //State qui stocke l'état des Todos dans un arrays
-  const [todos, setTodos] = useState([{ title: "Titre", tasks: ["Tâche"] }]);
+  const [todos, setTodos] = useState([
+    { title: "Titre", tasks: [{ task: "Tâche" }] },
+  ]);
 
   //State pour delete une liste
   const [deleteList, setDeleteList] = useState(false);
@@ -18,6 +21,44 @@ const Todos = ({ userStatus }) => {
   };
 
   const [modify, setModify] = useState(initialModifyState);
+  const [localState, setLocalState] = useState(true);
+  const handleAdd = async () => {
+    const header = {
+      Authorization: "Bearer " + localStorage.getItem("Bearer Token"),
+      "Content-Type": "application/json;charset=UTF-8",
+      "Access-Control-Allow-Origin": "*",
+    };
+    const body = { key: null };
+
+    try {
+      const response = await axios.post(
+        "http://localhost:5500/todos/add-todo",
+        body,
+        { headers: header }
+      );
+
+      setTodos(response.data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:5500/todos", {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("Bearer Token"),
+          },
+        });
+        console.log(response.data);
+        setTodos(response.data);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    fetchData();
+  }, [localState]);
 
   return (
     <div
@@ -28,14 +69,7 @@ const Todos = ({ userStatus }) => {
         <h2>Bienvenue, voici vos Listes</h2>
         <div>
           {" "}
-          <button
-            className="head-buttons green"
-            onClick={(e) => {
-              const newTodo = [...todos];
-              newTodo.push({ title: "Titre", tasks: ["Tâche"] });
-              setTodos(newTodo);
-            }}
-          >
+          <button className="head-buttons green" onClick={handleAdd}>
             + Ajouter une liste
           </button>
           <button
@@ -60,9 +94,11 @@ const Todos = ({ userStatus }) => {
        //////////////////////////////////
        */}
       <section className="todos-section">
-        {todos.map(({ title, tasks }, todoIndex) => {
+        {todos.map(({ title, tasks, id, ...rest }, todoIndex) => {
           return (
             <Todo
+              setLocalState={setLocalState}
+              todoId={id}
               key={todoIndex}
               todoIndex={todoIndex}
               title={title}

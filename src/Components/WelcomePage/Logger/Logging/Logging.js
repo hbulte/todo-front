@@ -1,11 +1,26 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import { useState } from "react";
+import axios from "axios";
 
-const Logging = ({ logOrSign, setUserStatus }) => {
+const Logging = ({ logOrSign, setToken }) => {
   const [form, setForm] = useState({
-    username: "",
-    password: "",
+    username: "User1",
+    password: "User1234",
   });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const sendSubmit = async () => {
+      try {
+        const response = await axios.post("http://localhost:5500/login", form);
+        localStorage.setItem("Bearer Token", response.data.access_token);
+        setToken(localStorage.getItem("Bearer Token"));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    sendSubmit();
+  };
 
   const handleChange = (e) => {
     const newForm = { ...form };
@@ -17,12 +32,7 @@ const Logging = ({ logOrSign, setUserStatus }) => {
   return (
     <div className="log" style={{ display: logOrSign === "log" ? "" : "none" }}>
       <h3>Se connecter</h3>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          setUserStatus("connected");
-        }}
-      >
+      <form onSubmit={handleSubmit}>
         <label>Nom d'utilisateur</label>
         <input
           type="text"

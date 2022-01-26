@@ -2,7 +2,7 @@ import React from "react";
 import "./Task.css";
 
 const Task = ({
-  name,
+  task,
   modify,
   setModify,
   taskIndex,
@@ -58,7 +58,9 @@ const Task = ({
                 : "",
           }}
         >
-          {todos[todoIndex][taskIndex] ? todos[todoIndex][taskIndex] : name}
+          {todos[todoIndex][taskIndex]
+            ? todos[todoIndex][taskIndex].task
+            : task}
         </p>
         <input
           type="text"
